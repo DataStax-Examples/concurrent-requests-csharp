@@ -1,22 +1,15 @@
-# datastax-example-template
-A short few sentences describing what is the purpose of the example and what the user will learn
+# Managing Concurrent Requests in C#
+Demonstrates how to execute multiple concurrent requests asynchronously while controlling the level of parallelism.
 
-e.g.
-This application shows how to use configure your NodeJs application to connect to DDAC/Cassandra/DSE or an Apollo database at runtime.
-
-Contributors: A listing of contributors to this repository linked to their github profile
+Contributors: [João Reis](https://github.com/joao-r-reis) copied from [here](https://github.com/datastax/csharp-driver/tree/master/examples/ConcurrentExecutions/ExecuteInLoop)
 
 ## Objectives
-A list of the top objectives that are being demonstrated by this sample
 
-e.g.
-* To demonstrate how to specify at runtime between a standard (DSE/DDAC/C*) client configuration and an Apollo configuration for the same application.
+* To demonstrate how to specify manage concurrent asynchronous requests while managing the level of parallelism
   
 ## Project Layout
-A list of key files within this repo and a short 1-2 sentence description of why they are important to the project
 
-e.g.
-* app.js - The main application file which contains all the logic to switch between the configurations
+* [Program.cs](Program.cs) - The main application file containing the logic for managing the number of simultaneous requests.
 
 ## How this Sample Works
 A description of how this sample works and how it demonstrates the objectives outlined above
@@ -24,22 +17,35 @@ A description of how this sample works and how it demonstrates the objectives ou
 ## Setup and Running
 
 ### Prerequisites
-The prerequisites required for this application to run
 
-e.g.
-* NodeJs version 8
-* A DSE 6.7 Cluster
-* Schema added to the cluster
+* .NET Core 2.1
+* A DDAC/C*/DSE Cluster running on localhost
+
+If you do not currently have a DDAC/C*/DSE cluster available you can start a DDAC cluster using Docker via the following command:
+
+```docker run -e DS_LICENSE=accept --name ddac -p 127.0.0.1:9042:9042 -d datastax/ddac ```
+
+If you have a DDAC/C*/DSE cluster but it is not located on localhost you need to change the contact point address located on line 33 to point to your cluster IP.
+
+```.AddContactPoint("XX.XX.XX.XX")```
+
 
 ### Running
-The steps and configuration needed to run and build this application
+From the root directory of this project, first run the following command to restore the dependencies:
 
-e.g.
-To run this application use the following command:
+`dotnet restore`
 
-`node app.js`
+Once the restore has completed run the following command to build the application:
 
-This will produce the following output:
+`dotnet build`
 
-`Connected to cluster with 3 host(s) ["XX.XX.XX.136:9042","XX.XX.XX.137:9042","XX.XX.XX.138:9042"]`
+Finally to run the application use the following command:
+
+`dotnet run`
+
+When running you should see output similar to the following:
+
+```MaxConcurrencyLevel=32  TotalLength=10000
+Executing 10000 queries with a concurrency level of 32, i.e., 32 tasks. Each task will process up to 313 operations.
+Finished executing 10000 queries with a concurrency level of 32.```
 

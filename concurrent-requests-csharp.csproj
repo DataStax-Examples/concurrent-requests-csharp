@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>concurrent_requests_csharp</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CassandraCSharpDriver" Version="3.12.0" />
+    <Content Include="Program.cs" />
+  </ItemGroup>
+</Project>
