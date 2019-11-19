@@ -1,27 +1,27 @@
-# Managing Concurrent Requests in C#
-Demonstrates how to execute multiple concurrent requests asynchronously while controlling the level of parallelism.
+# Concurrent Requests in C#
+This example shows how execute multiple concurrent requests with Apache Cassandra™ using the [C# DataStax Driver](https://docs.datastax.com/en/developer/csharp-driver/latest).
 
-Contributors: [João Reis](https://github.com/joao-r-reis) copied from [here](https://github.com/datastax/csharp-driver/tree/master/examples/ConcurrentExecutions/ExecuteInLoop)
+Contributors: [João Reis](https://github.com/joao-r-reis) - derived from [here](https://github.com/datastax/csharp-driver/tree/master/examples/ConcurrentExecutions/ExecuteInLoop)
 
 ## Objectives
 
-* To demonstrate how to specify manage concurrent asynchronous requests while managing the level of parallelism
+* How to execute async concurrent requests while managing parallelism using the C# DataStax Driver
   
 ## Project Layout
 
 * [Program.cs](Program.cs) - The main application file containing the logic for managing the number of simultaneous requests.
 
-## How this Sample Works
-A description of how this sample works and how it demonstrates the objectives outlined above
+## How this Works
+This example creates a single `tbl_sample_kv` table in the `examples` keyspace and writes records to that table asynchronously while capping the max in-flight requests based on the configured concurrency level.
 
 ## Setup and Running
 
 ### Prerequisites
 
 * .NET Core 2.1
-* A DDAC/C*/DSE Cluster running on localhost
+* A Cassandra, DDAC, DSE database running ( docker is a nice option for local install - [see docs](https://docs.datastax.com/en/docker/doc/docker/dockerQuickStart.html) )
 
-If you do not currently have a DDAC/C*/DSE cluster available you can start a DDAC cluster using Docker via the following command:
+If you do not currently have a C*/DDAC/DSE cluster available you can start a DDAC cluster using Docker via the following command:
 
 ```docker run -e DS_LICENSE=accept --name ddac -p 127.0.0.1:9042:9042 -d datastax/ddac ```
 
